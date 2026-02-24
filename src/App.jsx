@@ -231,8 +231,8 @@ export default function App() {
                 <div className="ip-embedding-card">
                   <div className="embedding-visual">
                     <svg width="100%" height="100%" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
-                      <line x1="400" y1="20" x2="400" y2="280" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
-                      <rect x="398" y="50" width="4" height="200" fill="var(--accent)" opacity="0.15" rx="2" />
+                      <line x1="400" y1="20" x2="400" y2="280" stroke="var(--accent2)" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+                      <rect x="398" y="50" width="4" height="200" fill="var(--accent2)" opacity="0.15" rx="2" />
                       {["192.168.1.1", "10.0.0.54", "172.16.2.10", "192.168.1.12", "8.8.8.8"].map((ip, i) => (
                         <text key={`ip-${i}`} x="-80" y={80 + i * 35} fill="var(--gray-900)" fontSize="14" fontFamily="monospace" fontWeight="600">
                           {ip}
@@ -241,13 +241,13 @@ export default function App() {
                         </text>
                       ))}
                       {["[0.12, 0.88, 0.45...]", "[0.91, 0.23, 0.11...]", "[0.55, 0.04, 0.77...]", "[0.32, 0.66, 0.29...]", "[0.08, 0.99, 0.51...]"].map((vector, i) => (
-                        <text key={`vec-${i}`} x="450" y={80 + i * 35} fill="var(--accent)" fontSize="14" fontFamily="monospace" opacity="0">
+                        <text key={`vec-${i}`} x="450" y={80 + i * 35} fill="var(--accent2)" fontSize="14" fontFamily="monospace" opacity="0">
                           {vector}
                           <animate attributeName="x" from="450" to="800" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                         </text>
                       ))}
-                      <circle cx="400" cy="150" r="30" fill="var(--accent)" opacity="0.05">
+                      <circle cx="400" cy="150" r="30" fill="var(--accent2)" opacity="0.05">
                         <animate attributeName="r" values="20;40;20" dur="1s" repeatCount="indefinite" />
                       </circle>
                     </svg>
@@ -288,15 +288,15 @@ export default function App() {
 
               {/* Connecting Lines (Edges) */}
               {/* Sources to Core */}
-              <line x1="200" y1="120" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
-              <line x1="200" y1="250" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
-              <line x1="200" y1="380" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
+              <line x1="200" y1="120" x2="500" y2="250" stroke="var(--accent2)" strokeWidth="2" opacity="0.2" />
+              <line x1="200" y1="250" x2="500" y2="250" stroke="var(--accent2)" strokeWidth="2" opacity="0.2" />
+              <line x1="200" y1="380" x2="500" y2="250" stroke="var(--accent2)" strokeWidth="2" opacity="0.2" />
               {/* Core to Destination */}
-              <line x1="500" y1="250" x2="800" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
+              <line x1="500" y1="250" x2="800" y2="250" stroke="var(--accent2)" strokeWidth="2" opacity="0.2" />
 
               {/* Animated Packets */}
               {[120, 250, 380].map((y, i) => (
-                <circle key={`packet-in-${i}`} r="4" fill="var(--accent)">
+                <circle key={`packet-in-${i}`} r="4" fill="var(--accent2)">
                   <animateMotion
                     dur={`${2 + i * 0.5}s`}
                     repeatCount="indefinite"
@@ -305,7 +305,7 @@ export default function App() {
                   />
                 </circle>
               ))}
-              <circle r="5" fill="var(--accent)">
+              <circle r="5" fill="var(--accent2)">
                 <animateMotion
                   dur="1.5s"
                   repeatCount="indefinite"
@@ -317,23 +317,23 @@ export default function App() {
               {/* Source Nodes */}
               {[120, 250, 380].map((y, i) => (
                 <g key={`src-${i}`}>
-                  <circle cx="200" cy={y} r="30" fill="none" stroke="var(--accent)" strokeWidth="2" />
-                  <circle cx="200" cy={y} r="8" fill="var(--accent)" />
+                  <circle cx="200" cy={y} r="30" fill="none" stroke="var(--accent2)" strokeWidth="2" />
+                  <circle cx="200" cy={y} r="8" fill="var(--accent2)" />
                 </g>
               ))}
 
               {/* Central Processor Node */}
               <g>
-                <circle cx="500" cy="250" r="40" fill="none" stroke="var(--accent)" strokeWidth="2">
+                <circle cx="500" cy="250" r="40" fill="none" stroke="var(--accent2)" strokeWidth="2">
                   <animate attributeName="r" values="38;42;38" dur="3s" repeatCount="indefinite" />
                 </circle>
-                <circle cx="500" cy="250" r="15" fill="var(--accent)" />
+                <circle cx="500" cy="250" r="15" fill="var(--accent2)" />
               </g>
 
               {/* Destination Node */}
               <g>
-                <circle cx="800" cy="250" r="30" fill="none" stroke="var(--accent)" strokeWidth="2" />
-                <circle cx="800" cy="250" r="8" fill="var(--accent)" />
+                <circle cx="800" cy="250" r="30" fill="none" stroke="var(--accent2)" strokeWidth="2" />
+                <circle cx="800" cy="250" r="8" fill="var(--accent2)" />
               </g>
 
             </svg>
@@ -346,7 +346,7 @@ export default function App() {
         <div className="bg-grid" />
         <div className="sec-wrap ai-layout">
           <div className="ai-left">
-            <h2 className="ben-h2" style={{ color: "var(--accent)" }}>Flow AI, <br /> <span className="sec-h2">Full Window Context</span></h2>
+            <h2 className="ben-h2" style={{ color: "var(--accent2)" }}>Flow AI, <br /> <span className="sec-h2">Full Window Context</span></h2>
             <p className="ben-p">
               Conversation with an analyst that has read every packet since startup.
             </p>
