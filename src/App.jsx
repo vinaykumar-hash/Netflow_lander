@@ -36,7 +36,7 @@ export default function App() {
     <div className="app">
 
       {/* ── NAV ── */}
-      <header className={`nav ${scrolled ? "nav--up" : ""}`}>
+      <header className={`nav ${scrolled ? "nav--up" : ""} ${open ? "open" : ""}`}>
         <div className="nav-in">
           <a href="#" className="logo">
             <img
@@ -62,7 +62,7 @@ export default function App() {
             <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer" className="btn-nav-cta">
               Get Started
             </a>
-            <button className="burger" onClick={() => setOpen(!open)}>
+            <button className={`burger ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
               <div />
               <div />
               <div />
@@ -93,7 +93,7 @@ export default function App() {
               <img src="https://img.icons8.com/color/48/linux--v1.png" alt="Linux" style={{ width: "24px", height: "24px" }} />
               Download for Linux
             </a>
-            <button className="btn-outline lg" style={{ border: "none" }}>See Features →</button>
+            <a href="#features" className="btn-outline lg" style={{ border: "none" }}>See Features →</a>
           </div>
 
           {/* App preview frame */}

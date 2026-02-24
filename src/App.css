@@ -353,6 +353,13 @@ a {
     max-width: none !important;
   }
 
+  .nav.open {
+    backdrop-filter: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   .nav-in {
     padding: 0 12px;
     justify-content: space-between;
@@ -360,7 +367,8 @@ a {
   }
 
   .nav-links {
-    display: none;
+    display: flex;
+    /* Always flex on mobile to allow transitions */
     position: fixed;
     top: 0;
     left: 0;
@@ -375,13 +383,14 @@ a {
     gap: 32px;
     opacity: 0;
     visibility: hidden;
+    transform: translateY(-20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-links.open {
-    display: flex;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
   }
 
   .nav-links a {
