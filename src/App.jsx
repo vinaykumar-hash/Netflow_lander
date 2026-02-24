@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import heroImg from "./assets/hero.png";
+import heroWhiteImg from "./assets/hero_white.png";
 
 import Counter from "./components/Counter";
 import FloatBadge from "./components/FloatBadge";
@@ -45,10 +46,10 @@ export default function App() {
             />
             <span className="logo-text">NetFlow</span>
           </a>
-          <nav className="nav-links">
-            <a href="#features">Features</a>
-            <a href="#ai">AI Analyst</a>
-            <a href="#tech">Technology</a>
+          <nav className={`nav-links ${open ? "open" : ""}`}>
+            <a href="#features" onClick={() => setOpen(false)}>Features</a>
+            <a href="#ai" onClick={() => setOpen(false)}>Flow AI</a>
+            <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>Docs</a>
           </nav>
           <div className="nav-right">
             <button
@@ -58,9 +59,14 @@ export default function App() {
             >
               {darkMode ? "☀️" : "🌙"}
             </button>
-            <a href="#download" className="btn-nav-cta">
+            <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer" className="btn-nav-cta">
               Get Started
             </a>
+            <button className="burger" onClick={() => setOpen(!open)}>
+              <div />
+              <div />
+              <div />
+            </button>
           </div>
         </div>
       </header>
@@ -79,21 +85,21 @@ export default function App() {
 
           <p className="hero-sub-aesthetic font-fustat tracking-tight text-lg font-bold">
             Efficiently manage your network's security with NetFlow.<br />
-            Real-time streaming, anomaly detection, and an AI analyst that never forgets.
+            Real-time streaming, anomaly detection, and an Flow AI that never forgets.
           </p>
 
           <div className="hero-btns">
-            <button className="btn-solid accent lg flex items-center gap-3">
+            <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer" className="btn-solid accent lg flex items-center gap-3">
               <img src="https://img.icons8.com/color/48/linux--v1.png" alt="Linux" style={{ width: "24px", height: "24px" }} />
               Download for Linux
-            </button>
+            </a>
             <button className="btn-outline lg" style={{ border: "none" }}>See Features →</button>
           </div>
 
           {/* App preview frame */}
           <div className="hero-preview-wrap">
             <div className="hero-preview-frame">
-              <img src={heroImg} alt="Netflow Dashboard" className="hero-preview-img" />
+              <img src={darkMode ? heroImg : heroWhiteImg} alt="Netflow Dashboard" className="hero-preview-img" />
             </div>
           </div>
         </div>
@@ -217,8 +223,8 @@ export default function App() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" className="features-sec">
-        <div className="sec-wrap flex justify-center items-center">
+      <section id="features" className="features-sec ">
+        <div className="sec-wrap flex justify-start items-start">
           <div className="feat-rows w-full">
             <div className="feat-row w-full">
               <div className="feat-visual w-full">
@@ -228,16 +234,16 @@ export default function App() {
                       <line x1="400" y1="20" x2="400" y2="280" stroke="var(--accent)" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
                       <rect x="398" y="50" width="4" height="200" fill="var(--accent)" opacity="0.15" rx="2" />
                       {["192.168.1.1", "10.0.0.54", "172.16.2.10", "192.168.1.12", "8.8.8.8"].map((ip, i) => (
-                        <text key={`ip-${i}`} x="-80" y={80 + i * 35} fill="var(--gray-900)" fontSize="10" fontFamily="monospace" fontWeight="600">
+                        <text key={`ip-${i}`} x="-80" y={80 + i * 35} fill="var(--gray-900)" fontSize="14" fontFamily="monospace" fontWeight="600">
                           {ip}
-                          <animate attributeName="x" from="-80" to="400" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
+                          <animate attributeName="x" from="-80" to="350" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                           <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.95;1" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                         </text>
                       ))}
                       {["[0.12, 0.88, 0.45...]", "[0.91, 0.23, 0.11...]", "[0.55, 0.04, 0.77...]", "[0.32, 0.66, 0.29...]", "[0.08, 0.99, 0.51...]"].map((vector, i) => (
-                        <text key={`vec-${i}`} x="400" y={80 + i * 35} fill="var(--accent)" fontSize="9" fontFamily="monospace" opacity="0">
+                        <text key={`vec-${i}`} x="450" y={80 + i * 35} fill="var(--accent)" fontSize="14" fontFamily="monospace" opacity="0">
                           {vector}
-                          <animate attributeName="x" from="400" to="800" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
+                          <animate attributeName="x" from="450" to="800" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                           <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
                         </text>
                       ))}
@@ -277,62 +283,59 @@ export default function App() {
               with sub-millisecond precision.
             </p>
           </div>
-
           <div className="topology-container-right">
             <svg width="100%" height="450" viewBox="0 0 1000 500" className="vis-chart-svg">
-              <defs>
-                <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
 
-              {/* Background Area Wave - Synced with bar centers */}
-              <path
-                d="M 100 450 
-                   C 150 450, 200 330, 220 330 
-                   S 300 170, 320 170 
-                   S 400 230, 420 230 
-                   S 500 50, 520 50 
-                   S 600 270, 620 270 
-                   S 700 250, 720 250 
-                   S 800 130, 820 130 
-                   S 900 450, 1000 450 
-                   L 1000 500 L 100 500 Z"
-                fill="url(#areaGradient)"
-                className="vis-area-bg"
-              />
+              {/* Connecting Lines (Edges) */}
+              {/* Sources to Core */}
+              <line x1="200" y1="120" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
+              <line x1="200" y1="250" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
+              <line x1="200" y1="380" x2="500" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
+              {/* Core to Destination */}
+              <line x1="500" y1="250" x2="800" y2="250" stroke="var(--accent)" strokeWidth="2" opacity="0.2" />
 
-              {/* Top Stroke Wave */}
-              <path
-                d="M 100 450 
-                   C 150 450, 200 330, 220 330 
-                   S 300 170, 320 170 
-                   S 400 230, 420 230 
-                   S 500 50, 520 50 
-                   S 600 270, 620 270 
-                   S 700 250, 720 250 
-                   S 800 130, 820 130 
-                   S 900 450, 1000 450"
-                fill="none"
-                stroke="var(--accent)"
-                strokeWidth="2"
-                className="vis-area-top"
-              />
-
-              {/* Static Data Bars */}
-              {[120, 280, 220, 400, 180, 200, 320].map((h, i) => (
-                <rect
-                  key={i}
-                  x={200 + i * 100}
-                  y={450 - h}
-                  width="40"
-                  height={h}
-                  fill="var(--accent)"
-                  className="vis-bar"
-                  rx="4"
-                />
+              {/* Animated Packets */}
+              {[120, 250, 380].map((y, i) => (
+                <circle key={`packet-in-${i}`} r="4" fill="var(--accent)">
+                  <animateMotion
+                    dur={`${2 + i * 0.5}s`}
+                    repeatCount="indefinite"
+                    path={`M 200 ${y} L 500 250`}
+                    begin={`${i * 0.4}s`}
+                  />
+                </circle>
               ))}
+              <circle r="5" fill="var(--accent)">
+                <animateMotion
+                  dur="1.5s"
+                  repeatCount="indefinite"
+                  path="M 500 250 L 800 250"
+                />
+              </circle>
+
+              {/* Nodes */}
+              {/* Source Nodes */}
+              {[120, 250, 380].map((y, i) => (
+                <g key={`src-${i}`}>
+                  <circle cx="200" cy={y} r="30" fill="none" stroke="var(--accent)" strokeWidth="2" />
+                  <circle cx="200" cy={y} r="8" fill="var(--accent)" />
+                </g>
+              ))}
+
+              {/* Central Processor Node */}
+              <g>
+                <circle cx="500" cy="250" r="40" fill="none" stroke="var(--accent)" strokeWidth="2">
+                  <animate attributeName="r" values="38;42;38" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="250" r="15" fill="var(--accent)" />
+              </g>
+
+              {/* Destination Node */}
+              <g>
+                <circle cx="800" cy="250" r="30" fill="none" stroke="var(--accent)" strokeWidth="2" />
+                <circle cx="800" cy="250" r="8" fill="var(--accent)" />
+              </g>
+
             </svg>
           </div>
         </div>
@@ -341,55 +344,53 @@ export default function App() {
       {/* ── AI ANALYST ── */}
       <section id="ai" className="ai-sec">
         <div className="bg-grid" />
-        <div className="sec-wrap">
-          <div className="ai-layout">
-            <div className="ai-left">
-              <h2 className="ben-h2" style={{ color: "var(--accent)" }}>Flow AI, <br /> <span className="sec-h2">Full Window Context</span></h2>
-              <p className="ben-p">
-                Conversation with an analyst that has read every packet since startup.
-              </p>
-              <ul className="ai-list">
-                {[
-                  "Context-aware threat hunting (RAG)",
-                  "Semantic search over network history",
-                  "One-click attack surface summarization",
-                  "Single Flow Context",
-                ].map(l => <li key={l} className="ai-li"><span className="ai-li-check">✓</span> {l}</li>)}
-              </ul>
-            </div>
-            <div className="ai-right">
-              <div className="ai-chat-window">
-                <div className="chat-header">
-                  <div className="chat-user-info">
-                    <span>Flow AI</span>
+        <div className="sec-wrap ai-layout">
+          <div className="ai-left">
+            <h2 className="ben-h2" style={{ color: "var(--accent)" }}>Flow AI, <br /> <span className="sec-h2">Full Window Context</span></h2>
+            <p className="ben-p">
+              Conversation with an analyst that has read every packet since startup.
+            </p>
+            <ul className="ai-list">
+              {[
+                "Context-aware threat hunting (RAG)",
+                "Semantic search over network history",
+                "One-click attack surface summarization",
+                "Single Flow Context",
+              ].map(l => <li key={l} className="ai-li"><span className="ai-li-check">✓</span> {l}</li>)}
+            </ul>
+          </div>
+          <div className="ai-right">
+            <div className="ai-chat-window">
+              <div className="chat-header">
+                <div className="chat-user-info">
+                  <span>Flow AI</span>
+                </div>
+                <div className="model-selector">
+                  Trinity Large (Free) <span className="chevron">▼</span>
+                </div>
+              </div>
+
+              <div className="chat-body">
+                <div className="chat-msg ai-msg-card">
+                  <div className="card-tag">FLOW AI</div>
+                  <p className="card-intro">Potential security concerns detected:</p>
+                  <div className="card-point">
+                    <strong>SYN Flood / Scan:</strong> IP <span className="ip-tag">192.168.1.10</span> is flagged with 0.90 confidence.
                   </div>
-                  <div className="model-selector">
-                    Trinity Large (Free) <span className="chevron">▼</span>
+                  <div className="card-point">
+                    <strong>High Volume:</strong> Encrypted transfer from <span className="ip-tag">20a1:4860...</span> flagged for exfiltration risk.
                   </div>
                 </div>
 
-                <div className="chat-body">
-                  <div className="chat-msg ai-msg-card">
-                    <div className="card-tag">FLOW AI</div>
-                    <p className="card-intro">Potential security concerns detected:</p>
-                    <div className="card-point">
-                      <strong>SYN Flood / Scan:</strong> IP <span className="ip-tag">192.168.1.10</span> is flagged with 0.90 confidence.
-                    </div>
-                    <div className="card-point">
-                      <strong>High Volume:</strong> Encrypted transfer from <span className="ip-tag">20a1:4860...</span> flagged for exfiltration risk.
-                    </div>
-                  </div>
-
-                  <div className="chat-msg user-typing-preview">
-                    <span className="typing-text">Summarize the risk of this transfer...</span>
-                    <span className="blinking-cursor">|</span>
-                  </div>
+                <div className="chat-msg user-typing-preview">
+                  <span className="typing-text">Summarize the risk of this transfer...</span>
+                  <span className="blinking-cursor">|</span>
                 </div>
+              </div>
 
-                <div className="chat-input-area">
-                  <div className="chat-input-placeholder">Ask about 1 selected flows...</div>
-                  <div className="chat-send-icon">➤</div>
-                </div>
+              <div className="chat-input-area">
+                <div className="chat-input-placeholder">Ask about 1 selected flows...</div>
+                <div className="chat-send-icon">➤</div>
               </div>
             </div>
           </div>
@@ -407,16 +408,16 @@ export default function App() {
           </div>
           <div className="dl-cards">
             {[
-              { icon: "🐧", name: "Ubuntu / Debian", req: "kernel ≥ 5.10 · libpcap · Python 3.10+", btn: "Download", solid: true },
-              { icon: "📦", name: "From Source", req: "Any Linux · Git · Rust · Python 3.10+", btn: "GitHub Repo", solid: false },
-              { icon: "📋", name: "Setup Docs", req: "Requirements · Interface config · BPF", btn: "View Docs", solid: false },
-            ].map(({ icon, name, req, btn, solid }) => (
-              <div key={name} className="dl-card">
+              { icon: <img src="https://img.icons8.com/color/48/linux--v1.png" alt="Linux" style={{ width: "48px", height: "48px" }} />, name: "Ubuntu / Debian", req: "kernel ≥ 5.10 · libpcap · Python 3.10+", btn: "Download", solid: true, url: "https://github.com/vinaykumar-hash/Netflow" },
+              { icon: "📦", name: "From Source", req: "Any Linux · Git · Rust · Python 3.10+", btn: "GitHub Repo", solid: false, url: "https://github.com/vinaykumar-hash/Netflow" },
+              { icon: "📋", name: "Setup Docs", req: "Requirements · Interface config · BPF", btn: "View Docs", solid: false, url: "https://github.com/vinaykumar-hash/Netflow" },
+            ].map(({ icon, name, req, btn, solid, url }) => (
+              <a key={name} href={url} target="_blank" rel="noopener noreferrer" className="dl-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="dlc-icon">{icon}</div>
                 <div className="dlc-name">{name}</div>
                 <div className="dlc-req">{req}</div>
-                <button className={solid ? "btn-solid lg accent" : "btn-outline lg"}>{btn}</button>
-              </div>
+                <div className={solid ? "btn-solid lg accent" : "btn-outline lg"}>{btn}</div>
+              </a>
             ))}
           </div>
         </div>
@@ -431,9 +432,9 @@ export default function App() {
           </a>
           <nav className="footer-links">
             <a href="#features">Features</a>
-            <a href="#ai">AI Analyst</a>
-            <a href="#tech">Technology</a>
-            <a href="#download">Download</a>
+            <a href="#ai">Flow AI</a>
+            <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer">Technology</a>
+            <a href="https://github.com/vinaykumar-hash/Netflow" target="_blank" rel="noopener noreferrer">Download</a>
           </nav>
           <p className="footer-copy">© 2026 NetFlow · Built for Linux, powered by Pathway</p>
         </div>
