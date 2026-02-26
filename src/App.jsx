@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import heroImg from "./assets/hero.png";
 import heroWhiteImg from "./assets/hero_white.png";
-
+import { inject } from '@vercel/analytics';
 import Counter from "./components/Counter";
 import FloatBadge from "./components/FloatBadge";
 import NetCanvas from "./components/NetCanvas";
 import Card from "./components/Card";
-
+inject();
 /* ── Main ── */
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -34,7 +34,6 @@ export default function App() {
 
   return (
     <div className="app">
-
       {/* ── NAV ── */}
       <header className={`nav ${scrolled ? "nav--up" : ""} ${open ? "open" : ""}`}>
         <div className="nav-in">
